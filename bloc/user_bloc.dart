@@ -1,8 +1,9 @@
 import 'package:rxdart/rxdart.dart';
 import '../resources/api/api_provider.dart';
 import '../resources/models/user.dart';
+import 'base_bloc.dart';
 
-class UserBloc {
+class UserBloc extends BaseBloc {
   final ApiProvider apiProvider = ApiProvider();
   final _userFetcher = PublishSubject<User>(); //rx를 사용할경우
 
@@ -17,8 +18,9 @@ class UserBloc {
     _userFetcher.sink.add(itemModel);
   }
 
-  dispose() {
-    _moviesFetcher.close();
+  @override
+  void dispose() {
+    _userFetcher.close();
 
     //디스 포즈될시에
   }
